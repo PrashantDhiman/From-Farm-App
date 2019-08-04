@@ -5,7 +5,8 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="5dp"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:id="@+id/itemCardView">
     
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,17 +1,22 @@
 package com.example.fromfarm.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fromfarm.ItemModel;
 import com.example.fromfarm.R;
+import com.example.fromfarm.activities.ItemDetailsActivity;
 
 import java.util.List;
 
@@ -37,13 +42,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         ItemModel itemModelObject=listItems.get(position);
 
-        holder.imageViewItem.setImageResource(R.drawable.icon_cow_100px);
+        holder.imageViewItem.setImageResource(Integer.parseInt(itemModelObject.getImageURL()));
         holder.textViewName.setText(itemModelObject.getName());
         holder.textViewPrice.setText(itemModelObject.getPrice());
+
+        holder.itemCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(view.getContext(),ItemDetailsActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("imageUrl",listItems.get(position).getImageURL());
+                bundle.putString("name",listItems.get(position).getName());
+                bundle.putString("price",listItems.get(position).getPrice());
+                intent.putExtras(bundle);
+                view.getContext().startActivity(intent);
+            }
+        });
 
     }
 
@@ -57,6 +75,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public ImageView imageViewItem;
         public TextView textViewName;
         public TextView textViewPrice;
+        public CardView itemCardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +83,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             imageViewItem=itemView.findViewById(R.id.imageViewItem);
             textViewName=itemView.findViewById(R.id.textViewName);
             textViewPrice =itemView.findViewById(R.id.textViewPrice);
+            itemCardView=itemView.findViewById(R.id.itemCardView);
         }
     }
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ItemListActivity">
+    tools:context=".activities.ItemListActivity"
+    android:id="@+id/itemListRelativeLayout">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewItemList"

@@ -15,6 +15,7 @@ import com.example.fromfarm.R;
 public class FarmTypeActivity extends AppCompatActivity {
 
     CardView cardCropFarm,cardDairyFarm,cardPoultryFarm,cardFishFarm;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,14 @@ public class FarmTypeActivity extends AppCompatActivity {
         cardPoultryFarm=findViewById(R.id.cardPoultryFarm);
         cardFishFarm=findViewById(R.id.cardFishFarm);
 
+        intent=new Intent(getApplicationContext(),ItemListActivity.class);
+
         cardCropFarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Crop farm selected",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),ItemListActivity.class));
+                intent.putExtra("type","crop");
+                startActivity(intent);
             }
         });
 
@@ -42,7 +46,8 @@ public class FarmTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Dairy farm selected",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),ItemListActivity.class));
+                intent.putExtra("type","diary");
+                startActivity(intent);
             }
         });
 
@@ -50,7 +55,8 @@ public class FarmTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Poultry farm selected",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),ItemListActivity.class));
+                intent.putExtra("type","poultry");
+                startActivity(intent);
             }
         });
 
@@ -58,7 +64,8 @@ public class FarmTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Fish farm selected",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),ItemListActivity.class));
+                intent.putExtra("type","fish");
+                startActivity(intent);
             }
         });
     }
